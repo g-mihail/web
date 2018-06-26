@@ -10,6 +10,8 @@ public interface UserDao {
 
     User getById(int id);
 
+    List<User> getByEmail(String enail);
+
     List<User> findAll();
 
     void update(User user);

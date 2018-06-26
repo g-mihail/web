@@ -30,6 +30,21 @@ public class UserController {
         return "usersList";
     }
 
+    @GetMapping("/search")
+    public String searchUser() {
+        return "search";
+    }
+    @GetMapping("/add")
+    public String addorder() {
+        return "add";
+    }
+
+    @PostMapping("/searchUsers")
+    public String getUsersbyEmail(@RequestParam("email") String email,Model model) {
+        model.addAttribute("users", userService.getByEmail(email));
+        return "searchUsers";
+    }
+
     @GetMapping("/user/{id}")
     public String getById(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getById(id));

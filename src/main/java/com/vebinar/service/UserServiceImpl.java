@@ -38,4 +38,8 @@ public class UserServiceImpl implements UserService {
         userDao.delete(id);
 
     }
+
+    public List<User> getByEmail(String enail) {
+        return userDao.getByEmail(enail);
+    }
 }

@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Users list</h1>
+<#if (users?size>0)>
 <table>
     <tr>
         <th>Id</th>
@@ -24,6 +25,9 @@
     </tr>
 </#list>
 </table>
+<#else>
+<p> No users </p>
+</#if>
 
 <a href="/addUser">Create user</a>
 </body>
