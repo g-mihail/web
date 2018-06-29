@@ -207,23 +207,25 @@
 
 
 <form method="post" action="/add" class="simple-order-form no-borders ng-pristine ng-valid ng-scope" ng-controller="CategoryInfoController as info" ng-init="info.init()" ng-submit="addOrderClick = true">
-    <input name="csrfmiddlewaretoken" value="FYv2XF1HXf2NWSCtinpcKZBGAJjI5TjN" autocomplete="off" type="hidden">
+
     <div>
-        <span class="fake-placeholder fp-nowrap">Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»</span><input name="title" ng-model="dummy" rem-custom-placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»" rem-capitalize-first="" class="ng-pristine ng-valid ng-empty ng-touched">
+       <input name="title" placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"  class="ng-pristine ng-valid ng-empty ng-touched" type="text" value="">
     </div>
     <div>
-        <span class="fake-placeholder">Подробности. Укажите:
+       <!-- <span class="fake-placeholder">Подробности. Укажите:
 — Размеры, объем и другие параметры объекта
 — Материалы, которые предполагается использовать
 — Когда предполагается завершить работы
-— Прочие особенности, которые могут быть важны исполнителю</span><textarea name="details" cols="30" rows="10" rem-custom-placeholder="Подробности. Укажите:
+— Прочие особенности, которые могут быть важны исполнителю</span> -->
+
+<textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
 — Размеры, объем и другие параметры объекта
 — Материалы, которые предполагается использовать
 — Когда предполагается завершить работы
 — Прочие особенности, которые могут быть важны исполнителю"></textarea>
     </div>
     <div ng-controller="UserRegionController as userRegion" class="ng-scope">
-        <input name="location" placeholder="Москва" value="" ng-attr-value="{[{ userRegion.current.title || '' }]}">
+        <input name="location" placeholder="Барнаул, ул Балтийская 5" type="text" value="">
         <button type="submit" class="btn btn-orange sm" ng-disabled="addOrderClick">Добавить заказ</button>
     </div>
 </form>

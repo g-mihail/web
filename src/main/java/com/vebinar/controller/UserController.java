@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -34,16 +36,17 @@ public class UserController {
     public String searchUser() {
         return "search";
     }
-    @GetMapping("/add")
-    public String addorder() {
-        return "add";
-    }
+
+
 
     @PostMapping("/searchUsers")
     public String getUsersbyEmail(@RequestParam("email") String email,Model model) {
         model.addAttribute("users", userService.getByEmail(email));
         return "searchUsers";
     }
+
+    //@PostMapping("/orders")
+    //public
 
     @GetMapping("/user/{id}")
     public String getById(@PathVariable("id") int id, Model model) {
