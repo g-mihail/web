@@ -42,4 +42,8 @@ public class UserServiceImpl implements UserService {
     public List<User> getByEmail(String enail) {
         return userDao.getByEmail(enail);
     }
+
+    public User getByPhone(String phone) {
+        return userDao.getByPhone(phone);
+    }
 }

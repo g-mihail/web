@@ -15,9 +15,14 @@ public class UserDaoImpl implements UserDao {
     public JdbcTemplate jdbcTemplate;
 
     public void save(User user) {
-        String sql = "INSERT INTO vebinar.user (name, email, age) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getAge());
+        String sql = "INSERT INTO vebinar.user (name, email, password,phone) VALUES (?, ?, ?,?)";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),user.getPhone());
 
+    }
+
+    public User getByPhone(String phone) {
+        String sql = "SELECT * FROM vebinar.user WHERE phone=?";
+        return jdbcTemplate.queryForObject(sql, new UserMapper(), phone);
     }
 
     public User getById(int id) {
@@ -36,8 +41,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void update(User user) {
-        String sql = "UPDATE vebinar.user SET name=?, email=?, age=? WHERE id=?";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getAge(), user.getId());
+        String sql = "UPDATE vebinar.user SET name=?, email=?, password=?,phone=? WHERE id=?";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),user.getPhone(), user.getId());
     }
 
     public void delete(int id) {

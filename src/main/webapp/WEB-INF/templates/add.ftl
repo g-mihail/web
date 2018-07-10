@@ -203,86 +203,59 @@
 
 
      <div class="add-order-block">
-         <form class="add-order-form" name="orderForm"  action="/orders"  method="post">
+         <form class="add-order-form" name="orderForm"  action="/addorder"  method="post">
              <fieldset>
              <div class="add-order-block__row">
                  <label for="order_title">Заголовок</label>
+
                  <div class="form-element">
-                     <input placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"  type="text" name="title" value="<#if title??>${title}</#if>">
+                     <input placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"
+                     type="text" name="title" value="<#if title??>${title}</#if>">
 
                  </div>
              </div>
 
-             <div class="add-order-block__row add-order-block__description-block" ng-show="!displayStatic">
+         <div class="add-order-block__row add-order-block__description-block">
             <div class="add-order-details-block">
                 <label for="order_details">Подробности</label>
             </div>
             <div class="form-element">
                 <div class="textarea-wrapper">
-                    <rtk-multiline-input field-name="details" field-id="order_details" model="order.details" required="true" max-length="5000" ng-class="orderForm.remValidator.errorClass('details')" on-focus="tooltips.details.activate(true)" on-blur="tooltips.reset(true)" uib-tooltip-template="'orderDetails.html'" tooltip-placement="right" tooltip-trigger="'none'" tooltip-class="form-tooltip" tooltip-is-open="tooltips.details.isActive" rem-custom-placeholder="Укажите:
-— Размеры, объем и другие параметры объекта
-— Материалы, которые предполагается использовать
-— Когда предполагается завершить работы
-— Прочие особенности, которые могут быть важны исполнителю" mobile-only="" class="ng-isolate-scope">
-<span class="fake-placeholder fp-hidden">Укажите:
-— Размеры, объем и другие параметры объекта
-— Материалы, которые предполагается использовать
-— Когда предполагается завершить работы
-— Прочие особенности, которые могут быть важны исполнителю</span> <textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
+ <textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
 — Размеры, объем и другие параметры объекта
 — Материалы, которые предполагается использовать
 — Когда предполагается завершить работы
 — Прочие особенности, которые могут быть важны исполнителю"><#if details??>${details}</#if></textarea>
-<div ng-if="$ctrl.hasNotice || $ctrl.maxLength" class="ng-scope">
-   <div ng-if="$ctrl.hasNotice" ng-transclude="notice" class="ng-scope"><input-notice class="ng-scope">
-                            Пожалуйста, не указывайте здесь контакты.
-                            <span class="nowrap">
-                                <span class="pseudo-link black" ng-click="showWhyNoContacts()">Почему?</span>
-                            </span>
-                        </input-notice></div>
-   <div ng-if="$ctrl.maxLength" class="ng-binding ng-scope">0 / 5000</div>
-</div><!-- end ngIf: $ctrl.hasNotice || $ctrl.maxLength --></rtk-multiline-input>
                 </div>
-                <rtk-error-list form="orderForm" field="details" class="ng-isolate-scope">
-<!-- ngIf: $ctrl.isVisible --></rtk-error-list>
             </div>
-
-             </div>
-
+         </div>
 
 
-             <div class="add-order-block__text" ng-show="displayStatic">
+
+            <!-- <div class="add-order-block__text">
                  <div class="add-order-block__row add-order-block__description-block">
-                    <!-- <h3 class="order-title">{[{ order.title }]}</h3> -->
-                    <!-- <p class="details allow-new-lines">{[{ order.details }]}</p> -->
+
                  </div>
-             </div>
+             </div>-->
 
              <div class="add-order-block__file-attach add-order-block__row">
 
 
-            <div class="file-attach single" ng-class="{
-                single: !(order.pics.length + newImages.length),
-                full: order.pics.length + newImages.length >= maxImagesAmount
-            }">
-                <div class="js-uploaded">
 
-                </div>
+
                 <div class="js-attach">
-                    <span class="ui-icons icons-attached-file" ng-show="!(order.pics.length + newImages.length)"></span>
-                    <a href="" class="file-attach-pseudolink" ng-show="order.pics.length + newImages.length < maxImagesAmount">
-                        <span class="link ng-pristine ng-untouched ng-valid ng-binding ng-not-empty ng-valid-max-list-length" type="file" accept="image/*" name="images" ng-show="order.pics.length + newImages.length < maxImagesAmount" ng-model="newImages" rem-max-list-length="10" ngf-drop="" ngf-select="" ngf-change="updatePics($files, $invalidFiles)" ngf-keep="'distinct'" ngf-multiple="true" ngf-max-size="10MB" ngf-pattern="'image/*'">
+
+                    <a href="" class="file-attach-pseudolink">
+                        <span type="file" accept="image/*" name="images">
                             Приложить изображение
                         </span>
                     </a>
-                    <span ng-show="order.pics.length + newImages.length >= maxImagesAmount" class="link ng-hide">нельзя больше</span>
+
                 </div>
             </div>
-            <a href="" class="add-order-block__edit-link ng-hide" ng-show="displayStatic" ng-click="toggleDisplay(false)">
-                <i class="icon-pencil"></i> <span>Редактировать</span>
-            </a>
 
-             </div>
+
+
 
               <div class="add-order-block__row">
                               <label for="order_title">Адрес объекта</label>
@@ -292,6 +265,8 @@
 
                        </div>
               </div>
+
+
               <div class="add-order-block__row">
                                             <label for="order_title">Цена</label>
                                      <div class="form-element">
@@ -306,34 +281,20 @@
 
 
 
-             <div ng-if="!isAuthenticated">
+
                  <div class="add-order-block__row add-order-block__auth-block">
                      <div class="social-fields">
                          <label>Как к вам обращаться? (публикуется)</label>
-                         <div class="form-element" ng-class="orderForm.remValidator.errorClass('name')">
-                             <input name="name"  placeholder="Саша" type="text" required
-                                    rem-capitalize-first="name"
-                                    rem-cyrillic="true"
-                                    ng-model="order.name">
-                             <rtk-error-list form="orderForm" field="name" errors="{
-                                 cyrillic: 'Специальные символы и цифры недопустимы'
-                             }"></rtk-error-list>
+                         <div class="form-element">
+                             <input name="name"  placeholder="Саша" type="text">
                          </div>
 
 
                          <label>Телефон (не публикуется)</label>
                          <div class="user-phone">
 
-                        <rtk-first-phone form="orderForm" class="ng-isolate-scope">
-<fieldset class="form-element phone ng-pristine ng-invalid ng-invalid-required ng-valid-verification" ng-hide="$ctrl.verification.state" ng-class="phoneForm.remValidator.errorClass('phone', $ctrl.verification.isStarted || $ctrl.form.$submitted)" ng-disabled="$ctrl.verification.isLoading || $ctrl.loading" ng-form="phoneForm" rem-validation="{
-             phone: {
-                 'Неверный телефонный код': 'invalidCode'
-             },
-             nonFieldErrors: {
-                 'Контакт принадлежит другому пользователю': 'occupied',
-                 '/Expected available in (\\d+\\.?\\d*) seconds?\\./': 'throttled'
-             }
-          }">
+
+<fieldset class="form-element phone">
     <div class="controls">
         <div class="phone-input ng-isolate-scope ng-empty ng-invalid ng-invalid-required" rem-phone-input="" field-name="phone" is-verified="$ctrl.form.$submitted ? $ctrl.verification.isValid : true" rem-enter="$ctrl.verification.sendCode(phoneForm)" ng-required="true" ng-change="phoneForm.remValidator.resetErrors()" ng-model="$ctrl.verification.phone" required="required"><div class="ui-select-container select2 select2-container ng-pristine ng-untouched ng-valid ng-scope ng-not-empty select2-container-disabled" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-model="tel.country" ng-change="updateModel()" ng-disabled="noCountries || disabled" ng-click="'touchend' === $event.type &amp;&amp; $event.preventDefault()" disabled="disabled"><a class="select2-choice ui-select-match ng-scope" ng-class="{'select2-default': $select.isEmpty()}" ng-click="$select.toggle($event)" aria-label="Select box select"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide"></span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span ng-bind="'+' + $select.selected.phone_prefix" class="ng-binding ng-scope">+7</span></span>
          <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="search-container ui-select-search-hidden" ng-class="{'ui-select-search-hidden':!$select.searchEnabled, 'select2-search':$select.searchEnabled}">
@@ -395,75 +356,17 @@
          </form>
      </div>
 
-     <script type="text/ng-template" id="orderTitle.html">
-         <div class="title">Начните с заголовка. Например:</div>
-         <p>
-             <span>Требуется ремонт в&nbsp;квартире</span><span>Укладка ламината в&nbsp;офисе</span><span>Строительство дома в&nbsp;Талдоме</span>
-         </p>
-     </script>
-     <script type="text/ng-template" id="orderDetails.html">
-         <div class="title">Подробно опишите работы. Обязательно укажите:</div>
-         <ul>
-             <li>Размеры, объемы, параметры</li>
-             <li>Материалы, которые предполагается использовать</li>
-             <li>Прочие особенности работ</li>
-         </ul>
-     </script>
-     <script type="text/ng-template" id="orderDate.html">
-         <div class="title">Укажите удобное время для проведения работ.</div>
-         <p>
-             Если для вас это не&nbsp;важно, можно ничего не&nbsp;указывать.
-         </p>
-     </script>
-     <script type="text/ng-template" id="orderBudget.html">
-         <div class="title">Укажите категорию заказа, исходя из&nbsp;ориентировочного бюджета работ</div>
-         <p>
-             Это важно, так как поможет найти тех исполнителей, которые будут готовы взяться именно за&nbsp;ваш заказ.
-             Все исполнители подписаны на&nbsp;заказы определенных объемов. Стоимость материалов учитывать не&nbsp;нужно.
-         </p>
-     </script>
-     <script type="text/ng-template" id="orderLocation.html">
-         <div class="title">Введите адрес расположения объекта:</div>
-         <p>
-             На&nbsp;заказ смогут откликнуться исполнители, которые находятся поблизости. Возможно, ваш мастер живет в&nbsp;соседнем доме.<br>
-             Можно отметить ближайшее здание, узнаваемый ориентир, станцию метро.
-         </p>
-     </script>
+
+
+
+
 
                  </div>
 
              </div>
          </section>
 
-         <section class="wide-block order-added-page" ng-show="!isAuthenticated && orderPosted">
-             <div class="container">
-                 <div class="order-added-block">
-                     <div class="order-added-block__icon"></div>
-                     <div class="order-added-block__phrase">Проверьте почту {[{ order.email }]}</div>
-                     <p>Мы отправили вам ссылку для подтверждения заказа</p>
-                     <div class="order-added-block__actions">
-                         <div>
-                             <span class="as-link" ng-click="resetEmail()">Изменить почту</span>
-                         </div>
-                         <div>
-                             <span ng-show="attempts.left && attempts.countdown">
-                                 Отправить повторно<br/>
-                                 Будет доступно через {[{ attempts.countdown | date:'m:ss' }]}
-                             </span>
-                             <a ng-show="!loading && attempts.left && !attempts.countdown" href="" ng-click="resendEmail()">
-                                 Отправить повторно
-                             </a>
-                             <a ng-show="!attempts.left" href="/pages/contacts" target="_self">
-                                 Связаться с поддержкой
-                             </a>
-                             <p ng-show="loading">
-                                 <i class="icon__loading"></i>
-                             </p>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </section>
+
      </div>
 
 

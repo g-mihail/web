@@ -17,4 +17,6 @@ public interface UserService {
     void delete(int id);
 
     List<User> getByEmail(String enail);
+
+    User getByPhone(String phone);
 }

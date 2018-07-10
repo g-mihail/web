@@ -1,5 +1,6 @@
 package com.vebinar.config;
 
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +34,7 @@ public class SpringConfig {
     public StringHttpMessageConverter stringHttpMessageConverter() {
         return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
+
+
 
 }

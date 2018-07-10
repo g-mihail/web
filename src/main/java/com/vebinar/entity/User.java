@@ -1,20 +1,42 @@
 package com.vebinar.entity;
 
-public class User {
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private int id;
+@Table(name = "user")
+public class User {
+   @Id
+    private Long id;
+
     private String name;
+    private String phone;
+    private String password;
     private String email;
-    private int age;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public User() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,11 +56,5 @@ public class User {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 }

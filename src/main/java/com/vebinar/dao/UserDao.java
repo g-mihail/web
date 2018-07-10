@@ -8,9 +8,11 @@ public interface UserDao {
 
     void save(User user);
 
+    User getByPhone(String phone);
+
     User getById(int id);
 
-    List<User> getByEmail(String enail);
+    List<User> getByEmail(String email);
 
     List<User> findAll();
 
