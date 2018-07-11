@@ -72,6 +72,7 @@ public class OrderController {
        u.setPhone(phone);
        u.setName(name);
        u.setPassword("123456");
+       //fff
 
         userService.save(u);
        User us = userService.getByPhone(phone);
