@@ -227,7 +227,7 @@
             <ul>
                 <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
                 <li><a target="_self" href="/registration/">Стать исполнителем</a></li>
-                <li><a target="_self" href="/dogovor">Пользовательское соглашение</a></li>
+                <li><a target="_self" href="/dogovor">Пользовательское соглашение nbsp;</a></li>
             </ul>
         </div>
         <div class="footer-block__feedback-block">

@@ -94,7 +94,7 @@
 
 <div class="position-switch">
 
-
+    nbsp;
 <header class="site-header">
     <div class="container">
         <a href="/" target="_self" class="logo-block titled" title="Ремонтник.ру">
