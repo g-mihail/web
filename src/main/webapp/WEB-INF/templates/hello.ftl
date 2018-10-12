@@ -12,16 +12,12 @@
 <link rel="stylesheet" href="/resources/css/redesign.css">
 
 
-<!--[if IE]>
-<script>
-    delete rem.sentryDsn;
-</script>
-<![endif]-->
 
 </head>
 
 
 <body vocab="https://schema.org/">
+
 <svg style="display: none" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
     <symbol id="logo" viewBox="0 0 200 200">
         <path fill-rule="evenodd" d="M10.256,127.197c0,0-4.169,0.309-6.054-0.996
@@ -113,7 +109,7 @@
 
 <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
 
-<li><a target="_self" href="/auth/login/">Войти</a></li>
+<li><a target="_self" href="/login">Войти</a></li>
 
 
             </ul>
@@ -123,7 +119,7 @@
         <nav class="pull-right hidden-sm">
             <ul>
 
-<li><a target="_self" href="/boards/">Заказы</a></li>
+<li><a target="_self" href="/orders/">Заказы</a></li>
 
 <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
 
@@ -142,7 +138,7 @@
 
 <li><a target="_self" href="/add">Добавить заказ</a></li>
 
-<li><a target="_self" href="/boards/">Заказы</a></li>
+<li><a target="_self" href="/orders/">Заказы</a></li>
 
 <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
 
@@ -169,7 +165,7 @@
 
 <li><a target="_self" href="/pages/contacts">Связаться</a></li>
 
-<li><a target="_self" href="/auth/login/">Войти</a></li>
+<li><a target="_self" href="/login">Войти</a></li>
 
 
 
@@ -206,32 +202,32 @@
 
 
 
-<form method="post" action="/add" class="simple-order-form no-borders ng-pristine ng-valid ng-scope" ng-controller="CategoryInfoController as info" ng-init="info.init()" ng-submit="addOrderClick = true">
+<form  action="/add" method="post" class="simple-order-form no-borders ng-pristine ng-valid ng-scope">
 
     <div>
-       <input name="title" placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"  class="ng-pristine ng-valid ng-empty ng-touched" type="text" value="">
+       <input name="title" placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"  class="ng-pristine ng-valid ng-empty ng-touched" type="text" />
+    </div>
+     <div>
+
+
+ <textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
+ — Размеры, объем и другие параметры объекта
+ — Материалы, которые предполагается использовать
+ — Когда предполагается завершить работы
+ — Прочие особенности, которые могут быть важны исполнителю"></textarea>
     </div>
     <div>
-       <!-- <span class="fake-placeholder">Подробности. Укажите:
-— Размеры, объем и другие параметры объекта
-— Материалы, которые предполагается использовать
-— Когда предполагается завершить работы
-— Прочие особенности, которые могут быть важны исполнителю</span> -->
+        <input name="location" placeholder="Барнаул" type="text" />
+    </div>
 
-<textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
-— Размеры, объем и другие параметры объекта
-— Материалы, которые предполагается использовать
-— Когда предполагается завершить работы
-— Прочие особенности, которые могут быть важны исполнителю"></textarea>
-    </div>
-    <div ng-controller="UserRegionController as userRegion" class="ng-scope">
-        <input name="location" placeholder="Барнаул, ул Балтийская 5" type="text" value="">
-        <button type="submit" class="btn btn-orange sm" ng-disabled="addOrderClick">Добавить заказ</button>
-    </div>
+
+    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+
+    <button  class="btn btn-orange sm" type="submit">Добавить заказ</button>
+
 </form>
 </section>
 
-<a href="/users">go to Users</a>
 
 <footer class="footer-block">
         <div class="container">
@@ -246,7 +242,7 @@
             </div>
             <div class="footer-block__nav-block">
                 <ul>
-                    <li><a target="_self" href="/boards/">Заказы</a></li>
+                    <li><a target="_self" href="/orders/">Заказы</a></li>
                     <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
                     <li><a target="_self" href="/forum/">Сообщество</a></li>
                 </ul>
@@ -291,17 +287,7 @@
 
 
 
-    <script type="text/javascript">
-        (function () {
-            var s = document.createElement('script');
-            s.type = 'text/javascript';
-            s.async = true;
-            s.src = '//consultsystems.ru/script/2410/';
-            s.charset = 'utf-8';
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-        })();
-    </script>
+
 
 
 
@@ -316,4 +302,3 @@
 </script>
 </body>
 </html>
-nbsp;

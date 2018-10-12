@@ -20,12 +20,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
         encodingFilter.addMappingForUrlPatterns(null, true, "/*");
 
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(SpringConfig.class, WebConfig.class);
+        context.register(JPAConfig.class, WebConfig.class,DataSourceConfig.class);
         context.setServletContext(servletContext);
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/", "/user");
+        dispatcher.addMapping("/");
     }
 }
-//

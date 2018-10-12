@@ -1,8 +1,21 @@
+<#import "parts/header.ftl" as h>
+<#import "parts/showfields.ftl" as sh>
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="app">
 <head>
-<title>Добавить заказ на Ремонтник.ру.</title>
+    <title ng-bind="head.pageTitle">Добавить тендер, заказ на Ремонтник.ру.</title>
+
+<meta name="description" content="Заказы по ремонту и строительству.">
+<meta name="keywords" content="ремонт, заказ, строительство">
+
+    <meta name="robots" content="index, follow">
+
+
+
 <meta charset="utf-8">
+
+
 <link rel="icon" href="/favicon.ico">
 <link href="/favicon.ico" rel="shortcut icon">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -14,19 +27,37 @@
 <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+
 <style type="text/css">
     svg {
         display: none;
     }
 </style>
-<link rel="stylesheet" href="/resources/css/redesign.css">
-<script>
-    document.documentElement.classList && document.documentElement.classList.add('js');
-</script>
+<link rel="stylesheet" href="/resources/css/redesign.css?1.2.852">
+
+
+
+
+
+
 
 </head>
-<body vocab="https://schema.org/">
-<svg style="display: none" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
+<body >
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+    <svg style="display: none" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
     <symbol id="logo" viewBox="0 0 200 200">
         <path fill-rule="evenodd" d="M10.256,127.197c0,0-4.169,0.309-6.054-0.996
             c-1.812-1.253-3.124-4.713,0.193-8.032C9.397,113.157,91.336,9.986,93.949,6.144c3.481-5.113,7.592-4.881,11.073,0.003
@@ -41,18 +72,8 @@
             c-8.625,8.179-19.361,10.547-30.933,10.327c-11.287-0.214-15.361-5.242-15.361,2.039v17.02c0,2.647-0.474,3.686-3.6,4.716
             c-1.137,0.468-3.793,0.969-7.583,0.96c-3.79-0.012-7.769-0.535-7.864-0.724c-3.029-0.293-3.692-2.185-3.692-4.642V77.881z"></path>
     </symbol>
-    <symbol id="twitter" viewBox="0 0 100 100">
-        <path d="M98.705,19.707c-0.139-0.165-0.371-0.221-0.568-0.131c-2.919,1.295-5.99,2.226-9.153,2.776
-            c3.358-2.526,5.86-6.024,7.142-10.035c0.062-0.192-0.002-0.402-0.159-0.527c-0.158-0.125-0.377-0.141-0.55-0.038
-            c-3.782,2.243-7.878,3.824-12.179,4.701c-3.813-3.956-9.135-6.219-14.644-6.219c-11.204,0-20.318,9.114-20.318,20.317
-            c0,1.355,0.131,2.697,0.391,4c-15.518-0.958-30.028-8.408-39.894-20.509c-0.101-0.124-0.254-0.193-0.414-0.177
-            c-0.159,0.012-0.301,0.102-0.381,0.239c-1.8,3.088-2.751,6.621-2.751,10.215c0,6.229,2.83,12.053,7.649,15.896
-            c-2.481-0.298-4.904-1.079-7.089-2.292c-0.147-0.083-0.33-0.082-0.477,0.003c-0.147,0.084-0.24,0.24-0.244,0.41l-0.002,0.26
-            c0,8.946,5.895,16.801,14.282,19.409c-2.209,0.357-4.501,0.332-6.754-0.098c-0.166-0.03-0.34,0.027-0.454,0.155
-            c-0.113,0.128-0.151,0.306-0.099,0.469c2.515,7.85,9.503,13.355,17.637,14.041c-6.785,4.97-14.805,7.589-23.279,7.589
-            c-1.561,0-3.133-0.092-4.673-0.274c-0.22-0.025-0.438,0.106-0.514,0.318c-0.076,0.213,0.005,0.45,0.195,0.572
-            c9.17,5.88,19.773,8.988,30.664,8.988c35.625,0,56.913-28.938,56.913-56.914c0-0.779-0.015-1.554-0.046-2.327
-            c3.843-2.811,7.141-6.252,9.802-10.235C98.857,20.11,98.844,19.873,98.705,19.707z"></path>
+    <symbol id="instagram" viewBox="3 3 18 18">
+        <path d="M 8 3 C 5.243 3 3 5.243 3 8 L 3 16 C 3 18.757 5.243 21 8 21 L 16 21 C 18.757 21 21 18.757 21 16 L 21 8 C 21 5.243 18.757 3 16 3 L 8 3 z M 8 5 L 16 5 C 17.654 5 19 6.346 19 8 L 19 16 C 19 17.654 17.654 19 16 19 L 8 19 C 6.346 19 5 17.654 5 16 L 5 8 C 5 6.346 6.346 5 8 5 z M 17 6 A 1 1 0 0 0 16 7 A 1 1 0 0 0 17 8 A 1 1 0 0 0 18 7 A 1 1 0 0 0 17 6 z M 12 7 C 9.243 7 7 9.243 7 12 C 7 14.757 9.243 17 12 17 C 14.757 17 17 14.757 17 12 C 17 9.243 14.757 7 12 7 z M 12 9 C 13.654 9 15 10.346 15 12 C 15 13.654 13.654 15 12 15 C 10.346 15 9 13.654 9 12 C 9 10.346 10.346 9 12 9 z"></path>
     </symbol>
     <symbol id="vkontakte" viewBox="0 0 100 100">
         <path d="M94.242,66.929c-2.873-3.446-6.254-6.387-9.453-9.509
@@ -94,156 +115,105 @@
 
 <div class="position-switch">
 
-    nbsp;
-<header class="site-header">
-    <div class="container">
-        <a href="/" target="_self" class="logo-block titled" title="Ремонтник.ру">
-            <span class="logo">
-                <svg class="icon">
-                    <use xlink:href="#logo"></use>
-                </svg>
-                <span class="hidden-lg">Ремонтник.ру</span>
-            </span>
-            <span class="title hidden-sm">Ремонтник.ру</span>
-        </a>
+    <@h.header>
 
-        <div class="menu-toggle hidden-lg">
-            <div class="first"></div>
-            <div class="second"></div>
-            <div class="third"></div>
-        </div>
+</@h.header>
 
-
-        <nav class="pull-right hidden-sm">
-            <ul>
-
-<li><a target="_self" href="/pages/customers">Как это работает?</a></li>
-
-<li><a target="_self" href="/auth/login/">Войти</a></li>
-
-
-            </ul>
-        </nav>
-
-
-        <nav class="pull-right hidden-sm">
-            <ul>
-
-<li><a target="_self" href="/boards/">Заказы</a></li>
-
-<li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
-
-<li><a target="_self" href="/portfolio/">Фото работ</a></li>
-
-
-            </ul>
-        </nav>
-
-        <!-- мобильное меню -->
-        <div class="menu-wrapper hidden-lg">
-            <div>
-
-                <nav>
-                    <ul>
-
-<li class="active"><a target="_self" href="/add">Добавить заказ</a></li>
-
-<li><a target="_self" href="/boards/">Заказы</a></li>
-
-<li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
-
-<li><a target="_self" href="/portfolio/">Фото работ</a></li>
-
-
-                    </ul>
-                </nav>
-                <nav>
-                    <ul>
-
-<li><a target="_self" href="/pages/customers">Как это работает?</a></li>
-
-<li><a target="_self" href="/registration/">Стать исполнителем</a></li>
-
-
-                    </ul>
-                </nav>
-                <nav>
-                    <ul>
-
-
-<li><a target="_self" href="/pages/about">О проекте</a></li>
-
-<li><a target="_self" href="/pages/contacts">Связаться</a></li>
-
-<li><a target="_self" href="/auth/login/">Войти</a></li>
-
-
-
-                    </ul>
-                </nav>
-
-            </div>
-        </div>
-    </div>
-</header>
 <script async src="/resources/js/app.min/mobile-menu.js"></script>
 </div>
 
 
-     <div class="content-wrapper">
 
 
 
-         <section class="wide-block">
-             <div class="container">
-                 <h1>Добавить заказ</h1>
 
 
-                 <div class="content clearfix">
 
 
-     <div class="add-order-block">
-         <form class="add-order-form" name="orderForm"  action="/addorder"  method="post">
-             <fieldset>
-             <div class="add-order-block__row">
-                 <label for="order_title">Заголовок</label>
+        <div class="content-wrapper">
 
-                 <div class="form-element">
-                     <input placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"
-                     type="text" name="title" value="<#if title??>${title}</#if>">
 
-                 </div>
-             </div>
+<div>
+<div class="order-form ng-scope loaded">
+    <section class="wide-block">
+        <div class="container">
+            <h1>Добавить заказ</h1>
 
-         <div class="add-order-block__row add-order-block__description-block">
-            <div class="add-order-details-block">
-                <label for="order_details">Подробности</label>
+
+            <div class="content clearfix">
+
+<div class="add-order-block">
+    <form class="add-order-form" name="orderForm"  action="/addorder"  method="post" enctype="multipart/form-data">
+        <fieldset>
+            <div class="add-order-block__row">
+                <label>Заголовок</label>
+
+                <div class="form-element">
+                    <input placeholder="Заголовок. Например: «Требуется ремонт двухкомнатной квартиры»"
+                           type="text" name="title" value="<#if title??>${title}</#if>">
+
+                </div>
             </div>
-            <div class="form-element">
-                <div class="textarea-wrapper">
+
+
+
+
+
+            <div class="add-order-block__row add-order-block__description-block">
+                <div class="add-order-details-block">
+                    <label>Подробности</label>
+                </div>
+                <div class="form-element">
+                    <div class="textarea-wrapper">
  <textarea name="details" cols="30" rows="10" placeholder="Подробности. Укажите:
 — Размеры, объем и другие параметры объекта
 — Материалы, которые предполагается использовать
 — Когда предполагается завершить работы
 — Прочие особенности, которые могут быть важны исполнителю"><#if details??>${details}</#if></textarea>
+                    </div>
+
+                  <!--  <div ng-if="$ctrl.hasNotice || $ctrl.maxLength" class="ng-scope">
+
+                        <div ng-if="$ctrl.hasNotice" ng-transclude="notice" class="ng-scope">
+                        <input-notice class="ng-scope">
+                        Пожалуйста, не указывайте здесь контакты.
+                        <span class="nowrap">
+                                <span class="pseudo-link black" ng-click="showWhyNoContacts()">Почему?</span>
+                            </span>
+                    </input-notice>
+                        </div>
+
+                    </div>-->
+
+
                 </div>
             </div>
-         </div>
 
 
 
-            <!-- <div class="add-order-block__text">
-                 <div class="add-order-block__row add-order-block__description-block">
+
+
+
+            <div class="add-order-block__row">
+
+                <!-- <div class="js-uploaded">
 
                  </div>
-             </div>-->
+                 <div class="js-attach">
+                     <span class="ui-icons icons-attached-file" ng-show="!(order.pics.length + newImages.length)"></span>
+                     <a href="" class="file-attach-pseudolink" ng-show="order.pics.length + newImages.length < maxImagesAmount">
+                        <span class="link ng-pristine ng-untouched ng-valid ng-binding ng-not-empty ng-valid-max-list-length" type="file" accept="image/*" name="images" ng-show="order.pics.length + newImages.length < maxImagesAmount" ng-model="newImages" rem-max-list-length="10" ngf-drop="" ngf-select="" ngf-change="updatePics($files, $invalidFiles)" ngf-keep="'distinct'" ngf-multiple="true" ngf-max-size="10MB" ngf-pattern="'image/*'">
+                            Приложить изображение
+                        </span>
+                     </a>
+                     <span ng-show="order.pics.length + newImages.length >= maxImagesAmount" class="link ng-hide">нельзя больше</span>
+                 </div>
+                    -->
 
-             <div class="add-order-block__file-attach add-order-block__row">
 
 
 
-
-                <div class="js-attach">
+                <!-- <div class="js-attach">
 
                     <a href="" class="file-attach-pseudolink">
                         <span type="file" accept="image/*" name="images">
@@ -251,124 +221,194 @@
                         </span>
                     </a>
 
+                </div>-->
+
+                <div class="add-order-details-block">
+                    <label>Приложить изображение</label>
                 </div>
+                <span>
+               <input type="file" name="file" multiple accept="image/*">
+                </span>
             </div>
 
 
 
 
-              <div class="add-order-block__row">
-                              <label for="order_title">Адрес объекта</label>
-                       <div class="form-element">
-                <input type="text" name="location" placeholder="Барнаул, ул Балтийская 5" value="<#if location??>${location}</#if>">
+            <div class="add-order-block__row">
+                <label >Город объекта</label>
+                <div class="form-element">
+                  <!--  <input type="text" name="location" placeholder="Барнаул, ул Балтийская 5" value="<#if location??>${location}</#if>"> -->
+
+                    <select name="location" style="width: 100%">
+                        <option label="" value="" <#if (cityb?? && cityb == "")> selected="selected" </#if> ></option>
+                    <option label="Барнаул" value="Барнаул"  <#if (cityb?? && cityb == "barnaul")> selected="selected" </#if> >Барнаул</option>
+                <option label="Заринск" value="Заринск" <#if (cityb?? && cityb == "zarinsk")> selected="selected" </#if> >Заринск</option>
+            <option label="Бийск" value="Бийск" <#if (cityb?? && cityb == "bijsk")> selected="selected" </#if> >Бийск</option>
+        </select>
+
+                </div>
+            </div>
 
 
-                       </div>
-              </div>
+            <div class="add-order-block__row">
+                <label>Цена</label>
+                <div class="form-element">
+                    <input type="text" name="price" placeholder="700 руб." value="">
+                </div>
+            </div>
 
-
-              <div class="add-order-block__row">
-                                            <label for="order_title">Цена</label>
-                                     <div class="form-element">
-                              <input type="text" name="price" placeholder="700 руб." value="">
-                                     </div>
-              </div>
-
-
-
-
-
-
-
-
-
-                 <div class="add-order-block__row add-order-block__auth-block">
-                     <div class="social-fields">
-                         <label>Как к вам обращаться? (публикуется)</label>
-                         <div class="form-element">
-                             <input name="name"  placeholder="Саша" type="text">
-                         </div>
-
-
-                         <label>Телефон (не публикуется)</label>
-                         <div class="user-phone">
-
-
-<fieldset class="form-element phone">
-    <div class="controls">
-        <div class="phone-input ng-isolate-scope ng-empty ng-invalid ng-invalid-required" rem-phone-input="" field-name="phone" is-verified="$ctrl.form.$submitted ? $ctrl.verification.isValid : true" rem-enter="$ctrl.verification.sendCode(phoneForm)" ng-required="true" ng-change="phoneForm.remValidator.resetErrors()" ng-model="$ctrl.verification.phone" required="required"><div class="ui-select-container select2 select2-container ng-pristine ng-untouched ng-valid ng-scope ng-not-empty select2-container-disabled" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-model="tel.country" ng-change="updateModel()" ng-disabled="noCountries || disabled" ng-click="'touchend' === $event.type &amp;&amp; $event.preventDefault()" disabled="disabled"><a class="select2-choice ui-select-match ng-scope" ng-class="{'select2-default': $select.isEmpty()}" ng-click="$select.toggle($event)" aria-label="Select box select"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide"></span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span ng-bind="'+' + $select.selected.phone_prefix" class="ng-binding ng-scope">+7</span></span>
-         <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="search-container ui-select-search-hidden" ng-class="{'ui-select-search-hidden':!$select.searchEnabled, 'select2-search':$select.searchEnabled}">
-         <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-class="{'select2-active': $select.refreshing}" role="combobox" aria-expanded="true" aria-owns="ui-select-choices-1" aria-label="Select box" class="ui-select-search select2-input ng-pristine ng-untouched ng-valid ng-empty" ng-model="$select.search" style="width: 10px;" type="search">
-         </div><
-         ul tabindex="-1" class="ui-select-choices ui-select-choices-content select2-results ng-scope" repeat="country in countries"><li class="ui-select-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }"><div ng-show="$select.choiceGrouped($group)" class="ui-select-choices-group-label select2-result-label ng-binding ng-hide" ng-bind="$group.name"></div><ul id="ui-select-choices-1" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }" class="select2-result-single"><!-- ngRepeat: country in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: country in $select.items --></ul></li></ul><div class="ui-select-no-choice"></div></div><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" id="{{ $select.focusserId }}" aria-label="{{ $select.focusserTitle }}" aria-haspopup="true" role="button" disabled="disabled" type="text"></div>
-         <input name="phone"  placeholder="913 999 99 99"  ng-model="tel.number" ng-required="required" ng-disabled="disabled" ng-change="updateModel()" rem-outer-validation="isVerified" error-key="verification" mask="(999) 999-99-99" mask-restrict="reject" mask-clean="true" class="ng-pristine ng-isolate-scope ng-valid-verification ng-empty ng-invalid ng-invalid-required ng-touched" required="required" type="tel">
-         </div>
-        <button type="button" class="btn btn-blue sm auto2 hidden-sm" ng-class="($ctrl.verification.isLoading || $ctrl.loading) &amp;&amp; 'loading'" ng-click="$ctrl.verification.sendCode(phoneForm)">Подтвердить</button>
-    </div>
-    <rtk-error-list form="phoneForm" field="phone" condition="$ctrl.verification.isStarted || $ctrl.form.$submitted" errors="{
-                        mask: 'Некорректный номер телефона',
-                        invalidCode: 'Неверный код номера мобильного телефона',
-                        verification: 'Номер телефона не подтвержден'
-                    }" class="ng-isolate-scope">
-</rtk-error-list>
-    <rtk-error-list form="phoneForm" condition="$ctrl.verification.isStarted || $ctrl.form.$submitted" errors="{
-                        occupied: 'Этот номер телефона уже используется другим пользователем',
-                        throttled: 'Превышен суточный лимит проверок'
-                    }" class="ng-isolate-scope">
-</rtk-error-list>
-    <button type="button" class="btn btn-blue sm auto2 hidden-lg" ng-class="($ctrl.verification.isLoading || $ctrl.loading) &amp;&amp; 'loading'" ng-click="$ctrl.verification.sendCode(phoneForm)">Подтвердить</button>
-</fieldset>
-
-</rtk-first-phone>
-                             <p>Никаких лишних звонков! Ни&nbsp;один исполнитель не&nbsp;увидит ваш номер,
-                                 пока вы&nbsp;сами не&nbsp;передадите его.</p>
-                         </div>
-
-                     </div>
-
-                     </div>
-                 </div>
-
-
-
-                 <div class="add-order-block__row">
-                     <div class="form-element agreement-block" ng-class="orderForm.remValidator.errorClass('agreement')">
-                         <div>
-                             <input type="checkbox" id="agreement" name="agreement" class="checkbox-custom" ng-model="isAgree" required>
-                             <label for="agreement" class="checkbox-custom-view">
-                                 Я&nbsp;согласен с&nbsp;<a href="/dogovor/" target="_blank">правилами сервиса</a>
-                             </label>
-                         </div>
-                         <rtk-error-list form="orderForm" field="agreement" errors="{
-                             required: 'Необходимо согласиться с правилами сервиса'
-                         }"></rtk-error-list>
-                         <rtk-error-list form="orderForm"></rtk-error-list>
-                     </div>
-                 </div>
-             </div>
-             </fieldset>
-
-             <div class="add-order-block__button-block">
-                 <button type="submit" class="btn btn-orange">
-                   Сохранить
-                 </button>
-             </div>
-         </form>
-     </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
 
 
 
+       <!-- <div ng-if="!isAuthenticated">
+            <div class="add-order-block__row add-order-block__auth-block">
+                <div class="social-fields">
+                    <label>Как к вам обращаться? (публикуется)</label>
+                    <div class="form-element" ng-class="orderForm.remValidator.errorClass('name')">
+                        <input name="name" type="text" required
+                               rem-capitalize-first="name"
+                               rem-cyrillic="true"
+                               ng-model="order.name">
+                        <rtk-error-list form="orderForm" field="name" errors="{
+                            cyrillic: 'Специальные символы и цифры недопустимы'
+                        }"></rtk-error-list>
+                    </div>
+                    <label>Электронная почта (не публикуется)</label>
+                    <div class="form-element" ng-class="orderForm.remValidator.errorClass('email')">
+                        <input type="email" name="email" required
+                               ng-change="orderForm.remValidator.resetErrors()"
+                               ng-model="order.email">
+                        <rtk-error-list form="orderForm" field="email" errors="{
+                            email: 'Некорректный адрес электронной почты'
+                        }"></rtk-error-list>
+                    </div>
+
+                    <label>Телефон (не публикуется)</label>
+                    <div class="user-phone">
+                        <rtk-first-phone form="orderForm"></rtk-first-phone>
+                        <p>Никаких лишних звонков! Ни&nbsp;один исполнитель не&nbsp;увидит ваш номер,
+                            пока вы&nbsp;сами не&nbsp;передадите его.</p>
+                    </div>
+
+                </div>
+                <div class="social-auth">
+                    <rtk-social-profile ng-if="social.profile"
+                                        profile="social.profile"
+                                        on-cancel="social.clear()"></rtk-social-profile>
+                    <div ng-if="!social.profile">
+                        <h3>Или войти через</h3>
+                        <rtk-social-buttons on-click="social.auth($id)"></rtk-social-buttons>
+                    </div>
+                </div>
+            </div>
 
 
-                 </div>
 
-             </div>
-         </section>
+            <div class="add-order-block__row">
+                <div class="form-element agreement-block" ng-class="orderForm.remValidator.errorClass('agreement')">
+                    <div>
+                        <input type="checkbox" id="agreement" name="agreement" class="checkbox-custom" ng-model="isAgree" required>
+                        <label for="agreement" class="checkbox-custom-view">
+                            Я&nbsp;согласен с&nbsp;<a href="/dogovor/" target="_blank">правилами сервиса</a>
+                        </label>
+                    </div>
+                    <rtk-error-list form="orderForm" field="agreement" errors="{
+                        required: 'Необходимо согласиться с правилами сервиса'
+                    }"></rtk-error-list>
+                    <rtk-error-list form="orderForm"></rtk-error-list>
+                </div>
+            </div>
+        </div> -->
 
+            <@sh.showfields>
 
-     </div>
+        </@sh.showfields>
 
+        </fieldset>
+
+        <div class="add-order-block__button-block">
+            <button type="submit" class="btn btn-orange">
+                Сохранить
+            </button>
+        </div>
+    </form>
+</div>
+
+<script type="text/ng-template" id="orderTitle.html">
+    <div class="title">Начните с заголовка. Например:</div>
+    <p>
+        <span>Требуется ремонт в&nbsp;квартире</span><span>Укладка ламината в&nbsp;офисе</span><span>Строительство дома в&nbsp;Талдоме</span>
+    </p>
+</script>
+<script type="text/ng-template" id="orderDetails.html">
+    <div class="title">Подробно опишите работы. Обязательно укажите:</div>
+    <ul>
+        <li>Размеры, объемы, параметры</li>
+        <li>Материалы, которые предполагается использовать</li>
+        <li>Прочие особенности работ</li>
+    </ul>
+</script>
+<script type="text/ng-template" id="orderDate.html">
+    <div class="title">Укажите удобное время для проведения работ.</div>
+    <p>
+        Если для вас это не&nbsp;важно, можно ничего не&nbsp;указывать.
+    </p>
+</script>
+<script type="text/ng-template" id="orderBudget.html">
+    <div class="title">Укажите категорию заказа, исходя из&nbsp;ориентировочного бюджета работ</div>
+    <p>
+        Это важно, так как поможет найти тех исполнителей, которые будут готовы взяться именно за&nbsp;ваш заказ.
+        Все исполнители подписаны на&nbsp;заказы определенных объемов. Стоимость материалов учитывать не&nbsp;нужно.
+    </p>
+</script>
+<script type="text/ng-template" id="orderLocation.html">
+    <div class="title">Введите адрес расположения объекта:</div>
+    <p>
+        На&nbsp;заказ смогут откликнуться исполнители, которые находятся поблизости. Возможно, ваш мастер живет в&nbsp;соседнем доме.<br>
+        Можно отметить ближайшее здание, узнаваемый ориентир, станцию метро.
+    </p>
+</script>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--<section class="wide-block order-added-page" ng-show="!isAuthenticated && orderPosted">
+        <div class="container">
+            <div class="order-added-block">
+                <div class="order-added-block__icon"></div>
+                <div class="order-added-block__phrase">Проверьте почту {[{ order.email }]}</div>
+                <p>Мы отправили вам ссылку для подтверждения заказа</p>
+                <div class="order-added-block__actions">
+                    <div>
+                        <span class="as-link" ng-click="resetEmail()">Изменить почту</span>
+                    </div>
+                    <div>
+                        <span ng-show="attempts.left && attempts.countdown">
+                            Отправить повторно<br/>
+                            Будет доступно через {[{ attempts.countdown | date:'m:ss' }]}
+                        </span>
+                        <a ng-show="!loading && attempts.left && !attempts.countdown" href="" ng-click="resendEmail()">
+                            Отправить повторно
+                        </a>
+                        <a ng-show="!attempts.left" href="/pages/contacts" target="_self">
+                            Связаться с поддержкой
+                        </a>
+                        <p ng-show="loading">
+                            <i class="icon__loading"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</div>
+</div>
+
+        </div>
 
         <div id="rootFooter"></div>
     </section>
@@ -387,7 +427,7 @@
             </div>
             <div class="footer-block__nav-block">
                 <ul>
-                    <li><a target="_self" href="/boards/">Заказы</a></li>
+                    <li><a target="_self" href="/boards/my/">Заказы</a></li>
                     <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
                     <li><a target="_self" href="/forum/">Сообщество</a></li>
                 </ul>
@@ -395,7 +435,7 @@
             <div class="footer-block__nav-block long">
                 <ul>
                     <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
-                    <li><a target="_self" href="/registration/">Стать исполнителем</a></li>
+
                     <li><a target="_self" href="/dogovor">Пользовательское соглашение</a></li>
                 </ul>
             </div>
@@ -410,9 +450,9 @@
                             <use xlink:href="#vkontakte"></use>
                         </svg>
                     </a>
-                    <a target="_self" href="https://twitter.com/remontnik_ru" class="tw">
+                    <a target="_self" href="https://www.instagram.com/remontnik.ru/" class="ig">
                         <svg class="icon">
-                            <use xlink:href="#twitter"></use>
+                            <use xlink:href="#instagram"></use>
                         </svg>
                     </a>
                     <a target="_self" href="https://www.facebook.com/remontnik.ru/" class="fb">
@@ -431,19 +471,6 @@
 
 
 
-
-
-
-
-
-<div id="outdated"></div>
-<script src="/resources/outdated-browser/outdatedbrowser/outdatedbrowser.min.js"></script>
-<script>
-    outdatedBrowser({
-        lowerThan: 'IE11',
-        languagePath: '/resources/outdated-browser/outdatedbrowser/lang/ru.html'
-    });
-</script>
 
 
 </body>

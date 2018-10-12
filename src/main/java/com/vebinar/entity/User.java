@@ -1,17 +1,57 @@
 package com.vebinar.entity;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Table(name = "user")
-public class User {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
+@Entity
+@Table(name = "users")
+public class User implements UserDetails {
    @Id
+   @Column (name = "id")
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column (name = "name", length = 255)
     private String name;
+    @Column
     private String phone;
+    @Column
     private String password;
+    @Column
     private String email;
+    @Column
+    private boolean active;
+
+    @ElementCollection(targetClass = Role.class,fetch =FetchType.EAGER )
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id") )
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
+   /* @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private  Set<Order> orders;*/
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isAdmin() {
+        return roles.contains(Role.ADMIN);
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public String getPhone() {
         return phone;
@@ -21,8 +61,38 @@ public class User {
         this.phone = phone;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
     }
 
     public void setPassword(String password) {
@@ -57,5 +127,5 @@ public class User {
     }
 
 
+
 }
-//

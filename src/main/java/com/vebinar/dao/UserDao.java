@@ -1,24 +1,48 @@
 package com.vebinar.dao;
 
 import com.vebinar.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserDao {
+@Repository
+public interface UserDao extends JpaRepository<User,Long> {
 
-    void save(User user);
+   // void save(User user);
 
-    User getByPhone(String phone);
+    @Override
+    <S extends User> S save(S entity);
 
-    User getById(int id);
 
-    List<User> getByEmail(String email);
+    //User getByPhone(String phone);
 
-    List<User> findAll();
 
-    void update(User user);
+   // User getById(int id);
 
-    void delete(int id);
+    @Override
+    Optional<User> findById(Long aLong);
 
+
+    // List<User> getByEmail(String email);
+
+   // List<User> findAll();
+
+   // void update(User user);
+
+
+   // void delete(int id);
+
+
+    @Override
+    void deleteById(Long aLong);
+
+
+  User findByPhone(String phone);
+
+  User findByName(String name);
 }
+
+
 //

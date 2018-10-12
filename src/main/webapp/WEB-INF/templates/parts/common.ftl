@@ -1,4 +1,5 @@
 <#macro page>
+<#import "header.ftl" as h>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,12 +22,26 @@
     }
 </style>
     <link rel="stylesheet" href="/resources/css/redesign.css">
+    <!-- Bootstrap-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
     <script>
     document.documentElement.classList && document.documentElement.classList.add('js');
 </script>
 
 </head>
 <body vocab="https://schema.org/">
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
 <svg style="display: none" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
     <symbol id="logo" viewBox="0 0 200 200">
         <path fill-rule="evenodd" d="M10.256,127.197c0,0-4.169,0.309-6.054-0.996
@@ -96,97 +111,10 @@
     <div class="position-switch">
 
 
-        <header class="site-header">
-            <div class="container">
-                <a href="/" target="_self" class="logo-block titled" title="Ремонтник.ру">
-            <span class="logo">
-                <svg class="icon">
-                    <use xlink:href="#logo"></use>
-                </svg>
-                <span class="hidden-lg">Ремонтник.ру</span>
-            </span>
-                    <span class="title hidden-sm">Ремонтник.ру</span>
-                </a>
+        <@h.header>
 
-                <div class="menu-toggle hidden-lg">
-                    <div class="first"></div>
-                    <div class="second"></div>
-                    <div class="third"></div>
-                </div>
+    </@h.header>
 
-
-                <nav class="pull-right hidden-sm">
-                    <ul>
-
-                        <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
-
-                        <li><a target="_self" href="/auth/login/">Войти</a></li>
-
-
-                    </ul>
-                </nav>
-
-
-                <nav class="pull-right hidden-sm">
-                    <ul>
-
-                        <li><a target="_self" href="/boards/">Заказы</a></li>
-
-                        <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
-
-                        <li><a target="_self" href="/portfolio/">Фото работ</a></li>
-
-
-                    </ul>
-                </nav>
-
-                <!-- мобильное меню -->
-                <div class="menu-wrapper hidden-lg">
-                    <div>
-
-                        <nav>
-                            <ul>
-
-                                <li class="active"><a target="_self" href="/add">Добавить заказ</a></li>
-
-                                <li><a target="_self" href="/boards/">Заказы</a></li>
-
-                                <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
-
-                                <li><a target="_self" href="/portfolio/">Фото работ</a></li>
-
-
-                            </ul>
-                        </nav>
-                        <nav>
-                            <ul>
-
-                                <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
-
-                                <li><a target="_self" href="/registration/">Стать исполнителем</a></li>
-
-
-                            </ul>
-                        </nav>
-                        <nav>
-                            <ul>
-
-
-                                <li><a target="_self" href="/pages/about">О проекте</a></li>
-
-                                <li><a target="_self" href="/pages/contacts">Связаться</a></li>
-
-                                <li><a target="_self" href="/auth/login/">Войти</a></li>
-
-
-
-                            </ul>
-                        </nav>
-
-                    </div>
-                </div>
-            </div>
-        </header>
         <script async src="/resources/js/app.min/mobile-menu.js"></script>
     </div>
 
@@ -214,11 +142,11 @@
                 </svg>
                 <span>Ремонтник.ру</span>
             </a>
-            <a target="_self" href="/boards/add/" class="btn btn-footer">Добавить заказ</a>
+            <a target="_self" href="/add/" class="btn btn-footer">Добавить заказ</a>
         </div>
         <div class="footer-block__nav-block">
             <ul>
-                <li><a target="_self" href="/boards/">Заказы</a></li>
+                <li><a target="_self" href="/orders/">Заказы</a></li>
                 <li><a target="_self" href="/catalog/">Мастера и бригады</a></li>
                 <li><a target="_self" href="/forum/">Сообщество</a></li>
             </ul>
@@ -227,7 +155,7 @@
             <ul>
                 <li><a target="_self" href="/pages/customers">Как это работает?</a></li>
                 <li><a target="_self" href="/registration/">Стать исполнителем</a></li>
-                <li><a target="_self" href="/dogovor">Пользовательское соглашение nbsp;</a></li>
+                <li><a target="_self" href="/dogovor">Пользовательское соглашение</a></li>
             </ul>
         </div>
         <div class="footer-block__feedback-block">
@@ -279,3 +207,4 @@
 
 </body>
 </html>
+</#macro>
